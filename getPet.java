@@ -1,9 +1,10 @@
 import java.io.*;
 import java.net.*;
+import java.util.Scanner; 
 
 public class getPet {
 	public static void main(String args[]) throws MalformedURLException, ProtocolException, IOException {
-		URL url = new URL("https://petstore.swagger.io/v2/pet/660779600098004");
+		URL url = new URL("https://petstore.swagger.io/v2/pet/" + args[0]);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
 		connection.setRequestMethod("GET");
@@ -30,6 +31,13 @@ try (BufferedReader input = new BufferedReader(new InputStreamReader(connection.
 } finally {
     connection.disconnect();
 }
+
+String value = "660779600098004"; 
+assert args[0] == value : "Correct pet"; 
+System.out.println(value + " is not the correct pet"); 
+
+
+
 
 // Output the content to the console
 System.out.println(content.toString());
